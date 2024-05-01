@@ -1,0 +1,26 @@
+spring:
+    application.name: producer-app
+    kafka:
+        bootstrap-servers: ${KAFKA_URL:localhost:29092}
+        producer:
+            key-serializer: org.apache.kafka.common.serialization.LongSerializer
+            value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+management:
+    tracing:
+        enabled: true
+        sampling:
+            probability: 1.0
+    otlp:
+        tracing:
+            endpoint: ${MANAGEMENT_OTLP_URL:http://localhost:4318/v1/traces}
+
+# Application Properties
+
+kafka-producer: 'Kafka Producer'
+NAMESPACE: 'kafka-producer-namespace'
+TOPIC: 'info'
+
+# Application server port
+#server:
+#    address: '8081'
